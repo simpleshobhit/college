@@ -1,0 +1,81 @@
+﻿
+<!DOCTYPE html>
+<html >
+<head>
+
+    <!--<script src="../Scripts/angular.min.js"></script>-->
+    <!--<script src="Home.js"></script>-->
+
+    <title></title>
+    
+</head>
+<body  >
+
+
+    <br />
+    <div >
+        <form class="form-inline">
+            <!--<table class="table table-striped">
+                <tr>
+                    <td class="col-md-1"></td>
+                    <td class="col-md-1"><input ng-model="query.TicketType" type="text" placeholder="Filter by Ticket Type" autofocus /></td>
+                    <td class="col-md-1"><input ng-model="query.StudentId" type="text" placeholder="Filter by Student Id" autofocus /></td>
+                    <td class="col-md-1"><input ng-model="query.Status" type="text" placeholder="Filter by Status" autofocus /></td>
+                    <td class="col-md-1"></td>
+                    <td class="col-md-1"></td>
+                </tr>
+            </table>-->
+            
+
+
+        </form>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td ng-hide="true" class="col-md-1">ID</td>
+                        <td class="col-md-1">Complaint Type</td>
+                        <td class="col-md-1">Student Name</td>
+                        <td class="col-md-1">Description</td>
+                        <td class="col-md-1">Action Comments</td>
+                        <td class="col-md-1">Status</td>
+                        <td class="col-md-1"></td>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="item in Tickets |filter:query | orderBy: '-Name'">
+                    <tr>
+                        <td ng-hide="true" class="col-md-1">{{item.ID}}</td>
+                        <td class="col-md-1">
+                            <select id="inputComplaintId" class="form-control" ng-disabled="true" ng-model="item.ComplaintTypeId" ng-options="x.ComplaintTypeId as x.ComplaintTypeName for x in Types"></select>
+                        </td>
+
+
+                        <td class="col-md-1">
+                            <select class="form-control" id="inputStudentId" ng-disabled="true" ng-model="item.StudentId" ng-options="s.StudentId as s.StudentName for s in StudentsList"></select>
+                        </td>
+                        <td class="col-md-1">
+                            <span ng-disabled="true">{{item.Description}}</span>
+                        </td>>
+                        <td class="col-md-1">
+                            <span data-ng-hide="editMode">{{item.ActionComments}}</span>
+                            <input type="text" ng-show="editMode" ng-model="item.ActionComments" ng-required />
+                        </td>
+                        <td class="col-md-1">
+                            <select class="form-control"  id="inputStatus" ng-model="item.StatusId" ng-options="st.StatusId as st.Status for st in Statuses"></select>
+                        </td>
+                        <td class="col-md-1">
+                            <a href="#" ng-hide="editMode" ng-click="editMode=true">Edit </a>
+                            <a href="#" ng-show="editMode" ng-click="editMode=false;updateTicket()">Save </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+    
+
+</body>
+</html>

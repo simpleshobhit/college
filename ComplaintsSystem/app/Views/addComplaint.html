@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body ng-controller="ticketsController as tc">
+    <h3>Add New Ticket</h3>
+    <div>
+        <form>
+            <div class="form-group">
+                <label for="inputName">Complaint Type</label>
+                <select id="inputCourseId" class="form-control" ng-model="ComplaintTypeId" ng-options="x.ComplaintTypeName for x in Types"></select>
+            </div>
+            <div class="form-group">
+                <label for="inputSalary">Course</label>
+                <select id="inputCourseId" class="form-control" ng-model="CourseId" ng-options="x.CourseName for x in Courses" ng-change="getBranch()">
+                    </select>
+            </div>
+            <div class="form-group">
+                <label for="inputSalary">Branch</label>
+                <select class="form-control" id="inputBranchId" ng-model="BranchId" ng-options="item.BranchName for item in Branches" ng-change="getStudents()">
+                    </select>
+            </div>
+            <div class="form-group">
+                <label for="inputSalary">Student Name</label>
+                <select class="form-control" id="inputStudentId" ng-model="StudentId" ng-options="item.StudentName for item in Students">
+                    </select>
+            </div>
+            <div class="form-group">
+                <label for="inputDesignation">Description</label>
+                <input type="text" class="form-control" id="inputDescription" placeholder="Description" ng-model="Description">
+            </div>
+            <div class="form-group">
+                <label for="inputDesignation">Status</label>
+                <select class="form-control" id="inputStatus" ng-model="StatusId" ng-options="item.Status for item in Statuses">
+                    </select>
+            </div>
+            <button type="submit" class="btn btn-primary" ng-click="addTicket()">Add</button>
+        </form>
+
+    </div>
+</body>
+
+</html>
