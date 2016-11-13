@@ -45,9 +45,9 @@ namespace ComplaintsSystem.Migrations
                 context.students.Add(new Models.Student { StudentName = "Ishika", Year = 4, BranchId = 2, CourseId = 1, Email = "xxx@xx.xx", Mobile = "1234567891" });
                 context.students.Add(new Models.Student { StudentName = "Suresh", Year = 3, BranchId = 2, CourseId = 1, Email = "xxx@xx.xx", Mobile = "1234567891" });
                 context.students.Add(new Models.Student { StudentName = "Mahesh", Year = 2, BranchId = 2, CourseId = 1, Email = "xxx@xx.xx", Mobile = "1234567891" });
-                context.students.Add(new Models.Student { StudentName = "Sanjana", Year = 4, BranchId = 3, CourseId = 1, Email = "xxx@xx.xx", Mobile = "1234567891" });
-                context.students.Add(new Models.Student { StudentName = "Rajesh", Year = 4, BranchId = 3, CourseId = 1, Email = "xxx@xx.xx", Mobile = "1234567891" });
-                context.students.Add(new Models.Student { StudentName = "Varun", Year = 4, BranchId = 3, CourseId = 1, Email = "xxx@xx.xx", Mobile = "1234567891" });
+                context.students.Add(new Models.Student { StudentName = "Sanjana", Year = 4, BranchId = 1, CourseId = 1, Email = "xxx@xx.xx", Mobile = "1234567891" });
+                context.students.Add(new Models.Student { StudentName = "Rajesh", Year = 4, BranchId = 1, CourseId = 1, Email = "xxx@xx.xx", Mobile = "1234567891" });
+                context.students.Add(new Models.Student { StudentName = "Varun", Year = 4, BranchId = 1, CourseId = 1, Email = "xxx@xx.xx", Mobile = "1234567891" });
                 context.SaveChanges();
             }
             if (context.ticketStatus.Count() == 0)
@@ -66,6 +66,10 @@ namespace ComplaintsSystem.Migrations
                 context.complaintType.Add(new Models.ComplaintTypes { ComplaintTypeName = "Security" });
                 context.complaintType.Add(new Models.ComplaintTypes { ComplaintTypeName = "Miscellanious" });
                 context.SaveChanges();
+            }
+            if (context.userRoles.Count()==0) {
+                context.userRoles.Add(new Models.UserRoles { RoleName = "Admin" });
+                context.userRoles.Add(new Models.UserRoles { RoleName = "Student" });
             }
         }
     }

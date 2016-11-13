@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c9675004625d42c299b15d1afffbd03d" Name="Diagram1" DisplayType="true">
+        <EntityTypeShape EntityType="ComplaintsDataModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintsDataModel.Branch" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintsDataModel.Cours" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintsDataModel.Employee" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintsDataModel.Student" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintsDataModel.Ticket" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComplaintsDataModel.TicketStatu" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="ComplaintsDataModel.FK_dbo_Branches_dbo_Courses_CourseId" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintsDataModel.FK_dbo_Students_dbo_Branches_BranchId" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintsDataModel.FK_dbo_Tickets_dbo_Students_StudentId" ManuallyRouted="false" />
+        <AssociationConnector Association="ComplaintsDataModel.FK_dbo_Tickets_dbo_TicketStatus_StatusId" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

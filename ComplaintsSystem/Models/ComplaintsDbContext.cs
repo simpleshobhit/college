@@ -19,5 +19,7 @@ namespace ComplaintsSystem.Models
         public DbSet<Course> course { get; set; }
         public DbSet<TicketStatus> ticketStatus { get; set; }
         public DbSet<ComplaintTypes> complaintType { get; set; }
+        public DbSet<UserRoles> userRoles { get; set; }
+        public DbSet<Users> users { get; set; }
     }
 }

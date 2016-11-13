@@ -11,6 +11,6 @@ namespace ComplaintsSystem.Models
         [Key]
         public int ComplaintTypeId { get; set; }
         public string ComplaintTypeName { get; set; }
-        public ICollection<Tickets> tickets { get; set; }
+        //public ICollection<Tickets> tickets { get; set; }
     }
 }

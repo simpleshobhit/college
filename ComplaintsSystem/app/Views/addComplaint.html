@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label for="inputDesignation">Status</label>
-                <select class="form-control" id="inputStatus" ng-model="StatusId" ng-options="item.Status for item in Statuses">
+                <select class="form-control" id="inputStatus" ng-model="StatusId" ng-options="st.StatusId as st.Status for st in Statuses" >
                     </select>
             </div>
             <button type="submit" class="btn btn-primary" ng-click="addTicket()">Add</button>

@@ -93,6 +93,8 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -124,6 +126,8 @@
     <Content Include="app\main.js" />
     <Content Include="app\Services\ticketsService.js" />
     <Content Include="app\Views\addComplaint.html" />
+    <Content Include="app\Views\login.html" />
+    <Content Include="app\Views\register.html" />
     <Content Include="app\Views\showComplaints.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -153,6 +157,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="scripts\angular-route.min.js.map" />
     <Content Include="scripts\jquery-1.9.1.min.map" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -178,6 +183,8 @@
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\TicketsController.cs" />
     <Compile Include="Controllers\TicketStatusController.cs" />
+    <Compile Include="Controllers\UserRolesController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -185,9 +192,13 @@
     <Compile Include="Migrations\201611011007145_complaints.Designer.cs">
       <DependentUpon>201611011007145_complaints.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611011131010_complaints-v1.cs" />
-    <Compile Include="Migrations\201611011131010_complaints-v1.Designer.cs">
-      <DependentUpon>201611011131010_complaints-v1.cs</DependentUpon>
+    <Compile Include="Migrations\201611131603318_complaints-v2.cs" />
+    <Compile Include="Migrations\201611131603318_complaints-v2.Designer.cs">
+      <DependentUpon>201611131603318_complaints-v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611131622366_complaints-v3.cs" />
+    <Compile Include="Migrations\201611131622366_complaints-v3.Designer.cs">
+      <DependentUpon>201611131622366_complaints-v3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Branch.cs" />
@@ -197,6 +208,8 @@
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Tickets.cs" />
     <Compile Include="Models\TicketStatus.cs" />
+    <Compile Include="Models\UserRoles.cs" />
+    <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -206,9 +219,15 @@
     <EmbeddedResource Include="Migrations\201611011007145_complaints.resx">
       <DependentUpon>201611011007145_complaints.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611011131010_complaints-v1.resx">
-      <DependentUpon>201611011131010_complaints-v1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611131603318_complaints-v2.resx">
+      <DependentUpon>201611131603318_complaints-v2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611131622366_complaints-v3.resx">
+      <DependentUpon>201611131622366_complaints-v3.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

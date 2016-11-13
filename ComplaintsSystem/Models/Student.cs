@@ -16,6 +16,7 @@ namespace ComplaintsSystem.Models
         public string Email { get; set; }
         public string Mobile { get; set; }
         public ICollection<Tickets> Tickets { get; set; }
+        public Users User { get; set; }
         public Branch Branch { get; set; }
     }
 }

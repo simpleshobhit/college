@@ -12,12 +12,18 @@
         }).
         when("/addComplaint", {
             templateUrl: 'app/Views/addComplaint.html'
-        }).otherwise({
-            redirectTo: '/',
-        });
-      $locationProvider.html5Mode({ enabled: true, requireBase: false });
+        }).
+          when("/login", {
+              templateUrl: 'app/Views/login.html'
+          }).
+          when("/register", {
+              templateUrl: 'app/Views/register.html'
+          }).otherwise({
+              redirectTo: '/',
+          });
+      //$locationProvider.html5Mode({ enabled: true, requireBase: false });
   }
-])
+    ])
     .service("TicketService", function ($http) {
 
         this.getStatus = function () {
@@ -88,9 +94,43 @@
         };
 
     })
+.service("UserService", function ($http) {
+    //Function to create new User
+    this.post = function (User) {
+        var request = $http({
+            method: "post",
+            url: "/api/Users",
+            data: User
+        });
+        return request;
+    };
 
-    .controller('ticketsController',['$scope','TicketService', function ($scope, TicketService) {
+    this.login = function (User) {
+        return $http.get("/api/Users/Login?email=" + User.EmailId + "&password=" + User.Password);
+        //var request=$http({
+        //    method:"Post",
+        //    url:"/api/Users/Login",
+        //    data:User
+        //})
+        
+    };
+    //Read all User Roles
+    this.getUserRoles = function () {
+
+        return $http.get('/api/UserRoles');
+    };
+})
+    .controller('ticketsController', ['$scope','$window', 'TicketService', 'UserService', function ($scope,$window, TicketService, UserService) {
         //$scope.getData = function () {
+        if ($scope.authenticated == false) {
+            $scope.userDetails = [];
+        }
+        var getUserRoles = UserService.getUserRoles();
+        getUserRoles.then(function (response) {
+            $scope.Roles = response.data;
+            console.log($scope.Roles);
+        }, function (error) {
+        });
         var editMode = true;
         var getStatus = TicketService.getStatus();
         getStatus.then(function (response) {
@@ -184,6 +224,50 @@
                     break;
                 }
             }
+        };
+        $scope.register = function () {
+            if (this.user.RoleId.RoleId == 2) {
+                var User = {
+                    Id: this.user.Id, RoleId: this.user.RoleId.RoleId,
+                    StudentId: this.user.StudentId.StudentId, FirstName: this.user.firstName, LastName: this.user.lastName,
+                    EmailId: this.user.email, Password: btoa(this.user.password)
+                };
+            }
+            else {
+                var User = {
+                    Id: this.user.Id, RoleId: this.user.RoleId.RoleId,
+                    FirstName: this.user.firstName, LastName: this.user.lastName,
+                    EmailId: this.user.email, Password: btoa(this.user.password)
+                };
+            }
+            console.log(this.user);
+            var promiseAddUser = UserService.post(User);
+            promiseAddUser.then(function (User) {
+                alert("Registered successfully");
+                $window.location.href = '#/login';
+                //$scope.Tickets.push(ticket.data);
+
+            });
+        };
+        $scope.loginUser = function () {
+            var User = { EmailId: this.email, Password: btoa(this.password) };
+            var promiseLogin = UserService.login(User);
+            promiseLogin.then(function (response) {
+
+                $scope.userDetails = response.data;
+                $scope.authenticated = true;
+                $window.location.href = '#/showComplaints';
+                console.log($scope.userDetails);
+                console.log($scope.userDetails[0]);
+            },
+                  function (errorPl) {
+                      alert("Invalid Email or password occured");
+                  });
+        };
+
+        $scope.logout = function () {
+            $scope.userDetails = [];
+            $scope.authenticated = false;
         };
     }]);
 })();

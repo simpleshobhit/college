@@ -34,7 +34,7 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <td ng-hide="true" class="col-md-1">ID</td>
+                        <td ng-hide="true"></td>
                         <td class="col-md-1">Complaint Type</td>
                         <td class="col-md-1">Student Name</td>
                         <td class="col-md-1">Description</td>
@@ -43,7 +43,7 @@
                         <td class="col-md-1"></td>
                     </tr>
                 </thead>
-                <tbody ng-repeat="item in Tickets |filter:query | orderBy: '-Name'">
+                <tbody ng-repeat="item in Tickets">
                     <tr>
                         <td ng-hide="true" class="col-md-1">{{item.ID}}</td>
                         <td class="col-md-1">
@@ -61,10 +61,10 @@
                             <span data-ng-hide="editMode">{{item.ActionComments}}</span>
                             <input type="text" ng-show="editMode" ng-model="item.ActionComments" ng-required />
                         </td>
-                        <td class="col-md-1">
+                        <td class="col-md-1" ng-if="userDetails[0].RoleId==1">
                             <select class="form-control"  id="inputStatus" ng-model="item.StatusId" ng-options="st.StatusId as st.Status for st in Statuses"></select>
                         </td>
-                        <td class="col-md-1">
+                        <td class="col-md-1" ng-if="userDetails[0].RoleId==1">
                             <a href="#" ng-hide="editMode" ng-click="editMode=true">Edit </a>
                             <a href="#" ng-show="editMode" ng-click="editMode=false;updateTicket()">Save </a>
                         </td>
