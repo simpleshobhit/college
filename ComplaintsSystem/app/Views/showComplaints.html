@@ -9,13 +9,13 @@
     <title></title>
     
 </head>
-<body  >
+<body ng-controller="ticketsController as tc" >
 
 
     <br />
     <div >
-        <form class="form-inline">
-            <!--<table class="table table-striped">
+        <!--<form class="form-inline">
+            <table class="table table-striped">
                 <tr>
                     <td class="col-md-1"></td>
                     <td class="col-md-1"><input ng-model="query.TicketType" type="text" placeholder="Filter by Ticket Type" autofocus /></td>
@@ -24,11 +24,11 @@
                     <td class="col-md-1"></td>
                     <td class="col-md-1"></td>
                 </tr>
-            </table>-->
+            </table>
             
 
 
-        </form>
+        </form>-->
 
         <div class="table-responsive">
             <table class="table table-striped">
@@ -58,15 +58,15 @@
                             <span ng-disabled="true">{{item.Description}}</span>
                         </td>>
                         <td class="col-md-1">
-                            <span data-ng-hide="editMode">{{item.ActionComments}}</span>
-                            <input type="text" ng-show="editMode" ng-model="item.ActionComments" ng-required />
+                            <span ng-if="userDetails[0].RoleId==2">{{item.ActionComments}}</span>
+                            <input type="text" ng-if="userDetails[0].RoleId!=2" ng-model="item.ActionComments" ng-required />
                         </td>
-                        <td class="col-md-1" ng-if="userDetails[0].RoleId==1">
+                        <td class="col-md-1" >
                             <select class="form-control"  id="inputStatus" ng-model="item.StatusId" ng-options="st.StatusId as st.Status for st in Statuses"></select>
                         </td>
-                        <td class="col-md-1" ng-if="userDetails[0].RoleId==1">
-                            <a href="#" ng-hide="editMode" ng-click="editMode=true">Edit </a>
-                            <a href="#" ng-show="editMode" ng-click="editMode=false;updateTicket()">Save </a>
+                        <td class="col-md-1" ng-if="userDetails[0].RoleId!=2">
+                            <!--<a href="#" ng-hide="editMode" ng-click="editMode=true">Edit </a>-->
+                            <a href="#"  ng-click="editMode=false;updateTicket()">Save </a>
                         </td>
                     </tr>
                 </tbody>

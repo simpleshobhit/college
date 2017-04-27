@@ -56,6 +56,12 @@ namespace ComplaintsSystem.Migrations
                 context.ticketStatus.Add(new Models.TicketStatus { Status = "Rejected" });
                 context.ticketStatus.Add(new Models.TicketStatus { Status = "In-Progress" });
                 context.ticketStatus.Add(new Models.TicketStatus { Status = "Resolved" });
+                context.ticketStatus.Add(new Models.TicketStatus { Status = "Mentor" });
+                context.ticketStatus.Add(new Models.TicketStatus { Status = "HOD" });
+                context.ticketStatus.Add(new Models.TicketStatus { Status = "Director" });
+                context.ticketStatus.Add(new Models.TicketStatus { Status = "D.R" });
+                context.ticketStatus.Add(new Models.TicketStatus { Status = "V.C" });
+                context.ticketStatus.Add(new Models.TicketStatus { Status = "Chancellor" });
                 context.SaveChanges();
             }
             if (context.complaintType.Count() == 0)
@@ -70,6 +76,13 @@ namespace ComplaintsSystem.Migrations
             if (context.userRoles.Count()==0) {
                 context.userRoles.Add(new Models.UserRoles { RoleName = "Admin" });
                 context.userRoles.Add(new Models.UserRoles { RoleName = "Student" });
+                context.userRoles.Add(new Models.UserRoles { RoleName = "Mentor" });
+                context.userRoles.Add(new Models.UserRoles { RoleName = "HOD" });
+                context.userRoles.Add(new Models.UserRoles { RoleName = "Director" });
+                context.userRoles.Add(new Models.UserRoles { RoleName = "D.R" });
+                context.userRoles.Add(new Models.UserRoles { RoleName = "V.C" });
+                context.userRoles.Add(new Models.UserRoles { RoleName = "Chancellor" });
+                context.SaveChanges();
             }
         }
     }
