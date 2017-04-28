@@ -32,6 +32,9 @@
         this.getStudents = function () {
             return $http.get('/api/Students')
         }
+        this.getStudentsById = function (id) {
+            return $http.get('/api/Students/'+id)
+        }
         this.getTypes = function () {
             return $http.get('/api/ComplaintTypes')
         }
@@ -40,7 +43,10 @@
 
             return $http.get('/api/Courses');
         };
+        this.getBranches = function (id) {
 
+            return $http.get('/api/Branches');
+        };
         //Read all Branches by Course
         this.getBranchByCourses = function (id) {
 
@@ -167,18 +173,18 @@
             }, function (error) {
             });
         }
-        $scope.getBranch = function () {
-            var promiseBranch = TicketService.getBranchByCourses(this.CourseId.CourseId);
+       // $scope.getBranch = function () {
+            var promiseBranch = TicketService.getBranches();
             promiseBranch.then(function (response) {
                 $scope.Branches = response.data;
             }, function (error) {
             });
-        };
+        //};
         //$scope.disableStatus = function () {
         //    if ($scope.userDetails[0].RoleId == 2) return true;
         //}
         $scope.getStudents = function () {
-            var promiseStudents = TicketService.getStudentsByBranchId(this.BranchId.BranchId);
+            var promiseStudents = TicketService.getStudentsByBranchId($scope.StudentsDetails.BranchId);
             promiseStudents.then(function (response) {
                 $scope.Students = response.data;
             }, function (error) {
@@ -188,14 +194,14 @@
             console.log('add method');
             var ticket = {
                 Id: this.Id, ComplaintTypeId: this.ComplaintTypeId.ComplaintTypeId,
-                StudentId: this.StudentId.StudentId, Description: this.Description, StatusId: 1
+                StudentId: $scope.StudentsDetails.StudentId, Description: this.Description, StatusId: 1
             };
 
             var promiseAddEmployee = TicketService.post(ticket);
             promiseAddEmployee.then(function (ticket) {
                 alert("Added successfully");
                 $scope.Tickets.push(ticket.data);
-
+                $window.location.href = '#/showComplaints';
             });
 
 
@@ -272,6 +278,13 @@
                     $scope.Tickets = response.data;
                 }, function (error) {
                 });
+                if ($scope.userDetails[0].RoleId == 2) {
+                    var getStudentPromise = TicketService.getStudentsById($scope.userDetails[0].StudentId);
+                    getStudentPromise.then(function (response) {
+                        $scope.StudentsDetails = response.data;
+                    }, function (error) {
+                    });
+                }
             },
                   function (errorPl) {
                       alert("Invalid Email or password occured");

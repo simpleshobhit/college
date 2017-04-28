@@ -13,18 +13,17 @@
             </div>
             <div class="form-group">
                 <label for="inputSalary">Course</label>
-                <select id="inputCourseId" class="form-control" ng-model="CourseId" ng-options="x.CourseName for x in Courses" ng-change="getBranch()">
+                <select id="inputCourseId" class="form-control" ng-disabled="true" ng-model="StudentsDetails.CourseId" ng-options="x.CourseId as x.CourseName for x in Courses">
                     </select>
             </div>
             <div class="form-group">
                 <label for="inputSalary">Branch</label>
-                <select class="form-control" id="inputBranchId" ng-model="BranchId" ng-options="item.BranchName for item in Branches" ng-change="getStudents()">
+                <select class="form-control" id="inputBranchId" ng-disabled="true" ng-model="StudentsDetails.BranchId" ng-options="item.BranchId as item.BranchName for item in Branches" >
                     </select>
             </div>
             <div class="form-group">
                 <label for="inputSalary">Student Name</label>
-                <select class="form-control" id="inputStudentId" ng-model="StudentId" ng-options="item.StudentName for item in Students">
-                    </select>
+                 <input type="text" class="form-control" ng-disabled="true" id="inputStudentId" ng-model="StudentsDetails.StudentName">
             </div>
             <div class="form-group">
                 <label for="inputDesignation">Description</label>
