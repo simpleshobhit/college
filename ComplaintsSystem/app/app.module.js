@@ -183,6 +183,13 @@
         //$scope.disableStatus = function () {
         //    if ($scope.userDetails[0].RoleId == 2) return true;
         //}
+            $scope.getStudentsForRegister = function () {
+                var promiseRegisterStudents = TicketService.getStudentsByBranchId(this.BranchId.BranchId);
+                promiseRegisterStudents.then(function (response) {
+                    $scope.RegisterStudents = response.data;
+                }, function (error) {
+                });
+            };
         $scope.getStudents = function () {
             var promiseStudents = TicketService.getStudentsByBranchId($scope.StudentsDetails.BranchId);
             promiseStudents.then(function (response) {

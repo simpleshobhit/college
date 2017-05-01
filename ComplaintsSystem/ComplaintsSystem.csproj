@@ -173,7 +173,9 @@
     <None Include="scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -185,9 +187,13 @@
     <Compile Include="Controllers\TicketStatusController.cs" />
     <Compile Include="Controllers\UserRolesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="EmailComposer\TicketCreationEmailComposer.cs" />
+    <Compile Include="EmailComposer\TicketStatusChangeEmailComposer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IEmailComposer.cs" />
+    <Compile Include="Interfaces\IEmailProvider.cs" />
     <Compile Include="Migrations\201611011007145_complaints.cs" />
     <Compile Include="Migrations\201611011007145_complaints.Designer.cs">
       <DependentUpon>201611011007145_complaints.cs</DependentUpon>
@@ -205,12 +211,14 @@
     <Compile Include="Models\ComplaintsDbContext.cs" />
     <Compile Include="Models\ComplaintTypes.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\EmailMessage.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Tickets.cs" />
     <Compile Include="Models\TicketStatus.cs" />
     <Compile Include="Models\UserRoles.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\EmailProviders.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,6 +10,9 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using ComplaintsSystem.Models;
 using System.Web.Routing;
+using ComplaintsSystem.Interfaces;
+using ComplaintsSystem.Providers;
+using ComplaintsSystem.EmailComposer;
 
 namespace ComplaintsSystem.Controllers
 {
@@ -112,7 +115,11 @@ namespace ComplaintsSystem.Controllers
                     throw;
                 }
             }
-
+            var user = db.students.Find(tickets.StudentId);
+            var status = db.ticketStatus.Find(tickets.StatusId);
+            IEmailComposer emailComposer = new TicketStatusChangeEmailComposer(user.Email,status.Status);
+            IEmailProvider emailProvider = new EmailProviders();
+            emailProvider.Send(emailComposer.Compose());
             return StatusCode(HttpStatusCode.NoContent);
         }
 
@@ -127,6 +134,10 @@ namespace ComplaintsSystem.Controllers
 
             db.tickets.Add(tickets);
             db.SaveChanges();
+            var user = db.students.Find(tickets.StudentId);
+            IEmailComposer emailComposer = new TicketCreationEmailComposer(user.Email);
+            IEmailProvider emailProvider = new EmailProviders();
+            emailProvider.Send(emailComposer.Compose());
 
             return CreatedAtRoute("DefaultApi", new { id = tickets.ID }, tickets);
         }

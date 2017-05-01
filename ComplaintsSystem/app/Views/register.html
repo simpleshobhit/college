@@ -18,11 +18,11 @@
             </div>
             <div class="form-group" ng-if="user.RoleId.RoleId==2">
                 <label for="inputSalary">Branch</label>
-                <select class="form-control" id="inputBranchId" ng-model="BranchId" ng-options="item.BranchName for item in Branches" ng-change="getStudents()"></select>
+                <select class="form-control" id="inputBranchId" ng-model="BranchId" ng-options="item.BranchName for item in Branches" ng-change="getStudentsForRegister()"></select>
             </div>
             <div class="form-group" ng-if="user.RoleId.RoleId==2">
                 <label for="inputSalary">Student Name</label>
-                <select class="form-control" id="inputStudentId" ng-model="user.StudentId" ng-options="item.StudentName for item in Students"></select>
+                <select class="form-control" id="inputStudentId" ng-model="user.StudentId" ng-options="item.StudentName for item in RegisterStudents"></select>
             </div>
             <div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }" ng-if="user.RoleId.RoleId!=2">
                 <label for="username">First name</label>
